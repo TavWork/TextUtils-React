@@ -37,14 +37,16 @@ export default function TextForm(props) {
                 <textarea className="form-control" id="textBox" value={text} onChange={handleOnChange} rows="10" 
                 style={{color: (props.mode === "light"?'#063a6e':'white'), backgroundColor: (props.mode === "light"?'white':'grey')}}></textarea>
             </div>
-            <button className="btn btn-primary mx-2" onClick={convertToUpperCase}>Convert to Upper Case</button>
-            <button className="btn btn-primary mx-2" onClick={convertToLowerCase}>Convert to Lower Case</button>
-            <button className="btn btn-primary mx-2" onClick={clearText}>Clear text</button>
+            <button className="btn btn-primary mx-2 my-1" onClick={convertToUpperCase}>Convert to Upper Case</button>
+            <button className="btn btn-primary mx-2 my-1" onClick={convertToLowerCase}>Convert to Lower Case</button>
+            <button className="btn btn-primary mx-2 my-1" onClick={clearText}>Clear text</button>
         </div>
         
         <div className="container my-3" style={{color: (props.mode === 'light'?'#063a6e':'white')}} >  
             <h2>Your text summary</h2>
-            <p>{text.split(" ").length} words and {text.length} characters</p>
+            <p>{text.split(/\s+/).filter((string)=>{
+                return string.length!==0
+            }).length} words and {text.length} characters</p>
             <h2>Preview Text</h2>
             <p>{text.length>0?text:"Enter text in textbox above to preview it here"}</p>
         </div>
